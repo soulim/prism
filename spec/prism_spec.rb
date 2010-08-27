@@ -52,4 +52,11 @@ describe Prism do
       subject.stop
     end
   end
+  
+  describe '.[]' do
+    it 'returns EM::Channel' do
+      subject['foo'].should be_an_instance_of(EM::Channel)
+    end
+  end
+  
 end

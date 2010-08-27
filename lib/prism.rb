@@ -7,7 +7,7 @@ require 'prism/http'
 
 module Prism
   class << self
-    attr_accessor :websocket, :http, :key, :secret
+    attr_accessor :websocket, :http, :key, :secret    
   end
   
   # Start Prism
@@ -40,6 +40,11 @@ module Prism
   # Stop Prism
   def self.stop
     EM.stop
+  end
+  
+  def self.[](name)
+    @channels ||= {}
+    @channels[name.to_s] ||= EM::Channel.new
   end
   
 end
