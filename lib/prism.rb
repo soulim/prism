@@ -4,6 +4,7 @@ require 'rubygems'
 require 'eventmachine'
 require 'prism/web_socket'
 require 'prism/http'
+require 'cgi'
 
 module Prism
   class << self
@@ -47,4 +48,12 @@ module Prism
     @channels[name.to_s] ||= EM::Channel.new
   end
   
+  def self.authenticate(method, path, query)
+    query   = CGI.parse(query).inject({}){ |hash, (key, value)| hash[key] = value.first;hash } if query.is_a?(String)
+    
+    token   = Signature::Token.new(Prism.key, Prism.secret)
+    request = Signature::Request.new(method, path, query)
+    
+    return request.authenticate_by_token(token)
+  end
 end

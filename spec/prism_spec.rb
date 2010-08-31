@@ -59,4 +59,7 @@ describe Prism do
     end
   end
   
+  describe '.authenticate' do
+    it 'authenticate request'
+  end    
 end
