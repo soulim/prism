@@ -1,35 +1,19 @@
-development:
+development: &development
   http:
-    host: ""
+    host: "0.0.0.0"
     port: 8081
     debug: true
   websocket:
-    host: ""
+    host: "0.0.0.0"
     port: 8080
     debug: true
   key: "key"
   secret: "secret"
 
 test:
-  http:
-    host: ""
-    port: 8081
-    debug: true
-  websocket:
-    host: ""
-    port: 8080
-    debug: true
-  key: "key"
-  secret: "secret"
+  <<: *development
   
 production:
-  http:
-    host: ""
-    port: 8081
-    debug: true
-  websocket:
-    host: ""
-    port: 8080
-    debug: true
+  <<: *development
   key: "key"
   secret: "secret"
