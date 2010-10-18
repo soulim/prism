@@ -1,3 +1,7 @@
 .DS_Store
 *.log
 *.pid
+Capfile
+config/deploy.rb
+config/deploy
+config/prism.yml

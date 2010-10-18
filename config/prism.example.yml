@@ -1,0 +1,35 @@
+development:
+  http:
+    host: ""
+    port: 8081
+    debug: true
+  websocket:
+    host: ""
+    port: 8080
+    debug: true
+  key: "key"
+  secret: "secret"
+
+test:
+  http:
+    host: ""
+    port: 8081
+    debug: true
+  websocket:
+    host: ""
+    port: 8080
+    debug: true
+  key: "key"
+  secret: "secret"
+  
+production:
+  http:
+    host: ""
+    port: 8081
+    debug: true
+  websocket:
+    host: ""
+    port: 8080
+    debug: true
+  key: "key"
+  secret: "secret"
