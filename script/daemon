@@ -6,11 +6,7 @@ require 'daemons'
 require 'prism'
 require 'fileutils'
 
-#pids_dir = File.join(File.dirname(__FILE__), '..', 'tmp', 'pids')
-#FileUtils.mkdir_p(pids_dir)
-
 options = {
-  #:app_name   => "prism",
   :dir_mode   => :normal,
   :dir        => File.join(File.dirname(__FILE__), '..', 'tmp', 'pids'),
   :log_output => false,
