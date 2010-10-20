@@ -4,11 +4,15 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'rubygems'
 require 'daemons'
 require 'prism'
+require 'fileutils'
+
+pids_dir = File.join(File.dirname(__FILE__), '..', 'tmp', 'pids')
+FileUtils.mkdir_p(pids_dir)
 
 options = {
   #:app_name   => "prism",
   :dir_mode   => :normal,
-  :dir        => File.join(File.dirname(__FILE__), '..', 'tmp', 'pids'),
+  :dir        => pids_dir,
   #:log_dir    => File.join(File.dirname(__FILE__), '..', 'log'),
   :log_output => true,
   :backtrace  => true,
