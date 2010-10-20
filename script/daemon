@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+
+require 'rubygems'
+require 'daemons'
+require 'prism'
+
+options = {
+  #:app_name   => "prism",
+  :dir_mode   => :normal,
+  :dir        => File.join(File.dirname(__FILE__), '..', 'tmp', 'pids'),
+  #:log_dir    => File.join(File.dirname(__FILE__), '..', 'log'),
+  :log_output => true,
+  :backtrace  => true,
+  :monitor    => true,
+  :multiple    => false
+}
+Daemons.run(File.join(File.dirname(__FILE__), 'runner'), options)

@@ -3,20 +3,30 @@ require 'eventmachine'
 require 'prism/web_socket'
 require 'prism/http'
 require 'cgi'
+require 'logger'
 
 module Prism
   class << self
-    attr_accessor :websocket, :http, :key, :secret    
+    attr_accessor :websocket, :http, :key, :secret, :debug
+    
+    def logger
+      @logger ||= begin
+        log = Logger.new(STDOUT)
+        log.level = Logger::INFO
+        log
+      end
+    end
   end
   
   # Start Prism
   #
   # Example
   # Prism.start do |config|
-  #   config.websocket  = { :host => '0.0.0.0', :port => 8080, :debug => true }
-  #   config.http       = { :host => '0.0.0.0', :port => 8081, :debug => true }
+  #   config.websocket  = { :host => '0.0.0.0', :port => 8080 }
+  #   config.http       = { :host => '0.0.0.0', :port => 8081 }
   #   config.key        = 'key'
   #   config.secret     = 'secret'
+  #   config.debug      = true
   # end  
   def self.start(&block)
     yield(self) if block_given?
@@ -26,11 +36,11 @@ module Prism
       trap("TERM") { self.stop }
       trap("INT")  { self.stop }
       # start WebSocket server
-      EM::start_server(self.websocket[:host], self.websocket[:port], Prism::WebSocket, self.websocket) do |connection|
+      EM::start_server(self.websocket[:host], self.websocket[:port], Prism::WebSocket, self.websocket.merge(:debug => self.debug)) do |connection|
         connection.set_callbacks
       end
       # start HTTP server
-      EM::start_server(self.http[:host], self.http[:port], Prism::Http, self.http) do |connection|
+      EM::start_server(self.http[:host], self.http[:port], Prism::Http, self.http.merge(:debug => self.debug)) do |connection|
         connection.set_callbacks
       end
     end

@@ -5,3 +5,4 @@ Capfile
 config/deploy.rb
 config/deploy
 config/prism.yml
+tmp
