@@ -8,7 +8,7 @@ module Prism
     
     def set_callbacks
       self.onopen     { subscibe_on_channel }
-      self.onclose    { unsubscibe_from_channel }
+      self.onclose    { unsubscibe_from_channel; close_connection_after_writing }
       self.onerror    { |error| self.send(error) }
       #self.onmessage  { |message|  }
     end
