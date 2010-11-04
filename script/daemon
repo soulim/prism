@@ -9,7 +9,7 @@ require 'fileutils'
 options = {
   :dir_mode   => :normal,
   :dir        => File.join(File.dirname(__FILE__), '..', 'tmp', 'pids'),
-  :log_output => false,
+  :log_output => true,
   :backtrace  => true,
   :monitor    => true,
   :multiple    => false
