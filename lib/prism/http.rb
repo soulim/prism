@@ -25,6 +25,7 @@ module Prism
         response.status = 400
       else
         response.status = 202
+        Prism.logger.info "[Prism::Http] onmessage(#{@http_path_info}, #{@http_post_content})"
         @onmessage.call(@http_path_info, @http_post_content)
       end
       

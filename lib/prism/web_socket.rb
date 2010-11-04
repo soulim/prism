@@ -9,7 +9,7 @@ module Prism
     def set_callbacks
       self.onopen     { subscibe_on_channel }
       self.onclose    { unsubscibe_from_channel }
-      #self.onerror    { |error| self.send(error) }
+      self.onerror    { |error| self.send(error) }
       #self.onmessage  { |message|  }
     end
     
@@ -29,14 +29,14 @@ module Prism
         @sid = Prism[@channel_name].subscribe{ |channel_message| self.send(channel_message) }
         return true
       else
-        Prism.logger.info "[Authentication error] #{request.inspect}"
+        Prism.logger.error "[Authentication error] #{request.inspect}"
         self.process_unauthorized_request("Unauthorized access")
         return false
       end
     end
 
     def unsubscibe_from_channel
-      Prism[@channel_name].unsubscribe(sid) unless sid.nil?
+      Prism[channel_name].unsubscribe(sid) unless sid.nil?
       @sid          = nil
       @channel_name = nil
     end

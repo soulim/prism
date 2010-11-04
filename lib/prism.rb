@@ -62,6 +62,6 @@ module Prism
     token   = Signature::Token.new(Prism.key, Prism.secret)
     request = Signature::Request.new(method, path, query)
     
-    return request.authenticate_by_token(token)
+    return request.authenticate_by_token(token, nil)
   end
 end
