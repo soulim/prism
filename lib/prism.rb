@@ -40,9 +40,9 @@ module Prism
         connection.set_callbacks
       end
       # start HTTP server
-      EM::start_server(self.http[:host], self.http[:port], Prism::Http, self.http.merge(:debug => self.debug)) do |connection|
-        connection.set_callbacks
-      end
+      #EM::start_server(self.http[:host], self.http[:port], Prism::Http, self.http.merge(:debug => self.debug)) do |connection|
+      #  connection.set_callbacks
+      #end
     end
   end
   
