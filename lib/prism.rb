@@ -1,13 +1,12 @@
 require 'rubygems'
 require 'eventmachine'
 require 'prism/web_socket'
-require 'prism/http'
 require 'cgi'
 require 'logger'
 
 module Prism
   class << self
-    attr_accessor :websocket, :http, :key, :secret, :debug
+    attr_accessor :host, :port, :key, :secret, :debug
     
     def logger
       @logger ||= begin
@@ -18,16 +17,6 @@ module Prism
     end
   end
   
-  # Start Prism
-  #
-  # Example
-  # Prism.start do |config|
-  #   config.websocket  = { :host => '0.0.0.0', :port => 8080 }
-  #   config.http       = { :host => '0.0.0.0', :port => 8081 }
-  #   config.key        = 'key'
-  #   config.secret     = 'secret'
-  #   config.debug      = true
-  # end  
   def self.start(&block)
     yield(self) if block_given?
     
@@ -35,14 +24,10 @@ module Prism
     EM.run do
       trap("TERM") { self.stop }
       trap("INT")  { self.stop }
-      # start WebSocket server
-      EM::start_server(self.websocket[:host], self.websocket[:port], Prism::WebSocket, self.websocket.merge(:debug => self.debug)) do |connection|
+
+      EM::start_server(self.host, self.port, Prism::WebSocket, { :host => self.host, :port => self.port, :debug => self.debug }) do |connection|
         connection.set_callbacks
       end
-      # start HTTP server
-      #EM::start_server(self.http[:host], self.http[:port], Prism::Http, self.http.merge(:debug => self.debug)) do |connection|
-      #  connection.set_callbacks
-      #end
     end
   end
   

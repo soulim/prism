@@ -36,9 +36,6 @@ module Prism
     end
 
     def unsubscibe_from_channel
-      Prism.logger.info "[Prism] unsubscibe_from_channel(#{channel_name}, #{sid})"
-      Prism.logger.info "[Prism::Websocket] state(#{state})"
-
       Prism[channel_name].unsubscribe(sid) unless sid.nil?
       @sid          = nil
       @channel_name = nil

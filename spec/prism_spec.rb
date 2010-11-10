@@ -16,24 +16,24 @@ describe Prism do
     end
     
     it 'starts WebSocket server'
-    it 'starts HTTP server'
     
     context 'when block given' do
       before(:each) do
         subject.start do |config|
-          config.websocket  = { :host => '0.0.0.0', :port => 8080, :debug => true }
-          config.http       = { :host => '0.0.0.0', :port => 8081, :debug => true }
-          config.key        = 'key'
-          config.secret     = 'secret'
+          config.host   = '0.0.0.0'
+          config.port   = 8080
+          config.debug  = false
+          config.key    = 'key'
+          config.secret = 'secret'
         end        
       end
       
-      it 'sets websocket config' do
-        subject.websocket.should_not be_nil
+      it 'sets host' do
+        subject.host.should_not be_nil
       end
       
-      it 'sets http config' do
-        subject.http.should_not be_nil
+      it 'sets port' do
+        subject.port.should_not be_nil
       end
       
       it 'sets key' do

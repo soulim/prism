@@ -6,16 +6,10 @@ require 'yaml'
 require 'prism'
 
 config = YAML.load_file(File.join(File.dirname(__FILE__), '..', 'config', 'prism.yml'))[ARGV.first]
-
+p config
 Prism.start do |c|
-  c.websocket = {
-    :host  => config["websocket"]["host"],
-    :port  => config["websocket"]["port"]
-  }
-  c.http = {
-    :host  => config["http"]["host"],
-    :port  => config["http"]["port"]
-  }
+  c.host   = config["host"]
+  c.port   = config["port"]
   c.key    = config["key"]
   c.secret = config["secret"]
   c.debug  = config["debug"]

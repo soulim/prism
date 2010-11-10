@@ -43,7 +43,7 @@ module Prism
             http.callback { http.close_connection }
           end
           EM::start_server(host, port, subject, {}) do |c|
-            c.should_not_receive(:onerror)
+            c.should_receive(:onerror)
             c.set_callbacks
             EM.stop
           end
@@ -57,7 +57,7 @@ module Prism
             http.callback { http.close_connection }
           end
           EM::start_server(host, port, subject, {}) do |c|
-            c.should_not_receive(:onmessage)
+            c.should_receive(:onmessage)
             c.set_callbacks
             EM.stop
           end
