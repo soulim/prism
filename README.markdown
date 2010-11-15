@@ -1,8 +1,11 @@
-* Overview
+Overview
+===============================
 
 Prism is WebSocket server based on EventMachine.
 
-* License
+
+License
+===============================
 
 The MIT License
 
