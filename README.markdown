@@ -6,17 +6,17 @@ Prism is websocket server based on EventMachine.
 
 ## Usage
 
-  # start Prism
-  $ cd [prism_dir]
-  $ script/daemon start -- production
+    # start Prism
+    $ cd [prism_dir]
+    $ script/daemon start -- production
 
-  # Prism status
-  $ cd [prism_dir]
-  $ script/daemon status      #=> runner: running [pid 2273]
+    # Prism status
+    $ cd [prism_dir]
+    $ script/daemon status      #=> runner: running [pid 2273]
 
-  # stop prism
-  $ cd [prism_dir]
-  $ script/daemon stop
+    # stop prism
+    $ cd [prism_dir]
+    $ script/daemon stop
 
 ## License
 
