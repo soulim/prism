@@ -2,8 +2,11 @@
 
 ## Overview
 
-Prism is websocket server which was created specially for [TextRows app](http://textro.ws).
-It depends from [EventMachine](https://github.com/eventmachine/eventmachine) and [em-websocket](https://github.com/igrigorik/em-websocket). Prism uses [Signature](https://github.com/mloughran/signature) gem for request authentication.
+Prism is websocket server. It depends from
+[EventMachine](https://github.com/eventmachine/eventmachine) and
+[em-websocket](https://github.com/igrigorik/em-websocket). Prism uses
+[Signature](https://github.com/mloughran/signature) gem for request
+authentication.
 
 ## Usage
 
